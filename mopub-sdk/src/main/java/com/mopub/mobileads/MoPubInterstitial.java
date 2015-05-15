@@ -100,7 +100,8 @@ public class MoPubInterstitial implements CustomEventInterstitialAdapter.CustomE
     }
 
     private void showCustomEventInterstitial() {
-        if (mCustomEventInterstitialAdapter != null) mCustomEventInterstitialAdapter.showInterstitial();
+        if (mCustomEventInterstitialAdapter != null)
+            mCustomEventInterstitialAdapter.showInterstitial();
     }
 
     Integer getAdTimeoutDelay() {

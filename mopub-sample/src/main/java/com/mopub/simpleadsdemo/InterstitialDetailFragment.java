@@ -15,15 +15,20 @@ import static com.mopub.simpleadsdemo.Utils.hideSoftKeyboard;
 import static com.mopub.simpleadsdemo.Utils.logToast;
 
 public class InterstitialDetailFragment extends Fragment implements InterstitialAdListener {
+
     private MoPubInterstitial mMoPubInterstitial;
     private Button mShowButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final MoPubSampleAdUnit adConfiguration =
-                MoPubSampleAdUnit.fromBundle(getArguments());
+
+        // моделька MoPubSampleAdUnit з 5 полями(AD_UNIT_ID ,DESCRIPTION ,AD_TYPE ,IS_USER_DEFINED ,ID)
+        final MoPubSampleAdUnit adConfiguration =  MoPubSampleAdUnit.fromBundle(getArguments());
+
         final View view = inflater.inflate(R.layout.interstitial_detail_fragment, container, false);
+
+        // клас з 4 вюшками , які формують вигляд interstitial_detail_fragment layout
         final DetailFragmentViewHolder views = DetailFragmentViewHolder.fromView(view);
         hideSoftKeyboard(views.mKeywordsField);
 
