@@ -61,6 +61,7 @@ public class MoPubView extends FrameLayout {
     public MoPubView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        //первірка чи в маніфесті прописані певні поля/пермішини
         ManifestUtils.checkWebViewActivitiesDeclared(context);
 
         mContext = context;
@@ -81,7 +82,10 @@ public class MoPubView extends FrameLayout {
             return;
         }
 
+        //інітаєм view баннера
         mAdViewController = AdViewControllerFactory.create(context, this);
+
+        //броадкаст який сет visible \ un visible баннер в залежності чи екран активний чи пасивний
         registerScreenStateBroadcastReceiver();
     }
 

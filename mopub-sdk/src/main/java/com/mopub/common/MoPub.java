@@ -8,6 +8,7 @@ import com.mopub.mobileads.MoPubRewardedVideoListener;
 import com.mopub.mobileads.MoPubRewardedVideoManager;
 
 public class MoPub {
+    //це треба змінити
     public static final String SDK_VERSION = "3.7.0";
 
     public static enum LocationAwareness { NORMAL, TRUNCATED, DISABLED }

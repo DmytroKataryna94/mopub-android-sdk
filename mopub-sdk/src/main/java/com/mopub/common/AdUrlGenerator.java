@@ -137,11 +137,14 @@ public abstract class AdUrlGenerator extends BaseUrlGenerator {
         addParam(KEYWORDS_KEY, keywords);
     }
 
+    // для чого тут той локейшин неясно / юзер може виставляти інформацію про місцезнаходження і точність в семпл апп
     protected void setLocation(@Nullable Location location) {
         Location bestLocation = location;
         Location locationFromLocationService = LocationService.getLastKnownLocation(mContext,
                 MoPub.getLocationPrecision(),
-                MoPub.getLocationAwareness());
+                MoPub.getLocationAwareness());// Get location awareness and precision
+        //location awareness and precision could be set globally for your app in sample
+
 
         if (locationFromLocationService != null &&
                 (location == null || locationFromLocationService.getTime() >= location.getTime())) {
@@ -207,6 +210,7 @@ public abstract class AdUrlGenerator extends BaseUrlGenerator {
     }
 
     protected void addBaseParams(final ClientMetadata clientMetadata) {
+        //clientMetadata клас , який зберігає інфу про девайс
         setAdUnitId(mAdUnitId);
 
         setSdkVersion(clientMetadata.getSdkVersion());

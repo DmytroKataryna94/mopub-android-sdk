@@ -40,6 +40,9 @@ import java.util.WeakHashMap;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 
+//1. сетаєм adUnitId і keywords
+//2.
+
 public class AdViewController {
     static final int DEFAULT_REFRESH_TIME_MILLISECONDS = 60000;  // 1 minute
     static final int MAX_REFRESH_TIME_MILLISECONDS = 600000; // 10 minutes
@@ -55,8 +58,14 @@ public class AdViewController {
 
     @Nullable
     private Context mContext;
+
+    //вюшка банера
     @Nullable
     private MoPubView mMoPubView;
+
+    //класс який extend AdUrlGenerator extend BaseUrlGenerator
+    //якось дуже неясно гунерує дуже неясну урлу
+    //яку ми здається будем кидати на сервак
     @Nullable
     private WebViewAdUrlGenerator mUrlGenerator;
 
@@ -98,6 +107,7 @@ public class AdViewController {
         return sViewShouldHonorServerDimensions.get(view) != null;
     }
 
+    //констуктор  викликається при ініціалізації MoPubView(Context context, AttributeSet attrs) в класі MoPubView
     public AdViewController(@NonNull Context context, @NonNull MoPubView view) {
         mContext = context;
         mMoPubView = view;
@@ -211,6 +221,9 @@ public class AdViewController {
     }
 
     public void loadAd() {
+        //що це за зміна я хз в описі пише ,,This is the power of the exponential term in the exponential backoff calculation,,
+        //в більшості методі її встановлюють як 1 (методи onAdLoadSuccess  , loadAd ), тільки в методі onAdLoadError зміна інкрементується mBackoffPower++
+        //в методі scheduleRefreshTimerIfEnabled зміна mBackoffPower встановлюється як параметр для Handler (цей хендлер виконує метод internalLoadAd через певний час)
         mBackoffPower = 1;
         internalLoadAd();
     }
@@ -225,10 +238,11 @@ public class AdViewController {
 
         if (!isNetworkAvailable()) {
             MoPubLog.d("Can't load an ad because there is no network connectivity.");
-            scheduleRefreshTimerIfEnabled();
+            scheduleRefreshTimerIfEnabled(); // якщо немає iнету , то перегружаєм через деякий час
             return;
         }
 
+        // отримуєм URL(з параметрами девайсу і т.д і за цією урл нам приходить відповідний банер)
         String adUrl = generateAdUrl();
         loadNonJavascript(adUrl);
     }
@@ -237,7 +251,7 @@ public class AdViewController {
         if (url == null) return;
 
         MoPubLog.d("Loading url: " + url);
-        if (mIsLoading) {
+        if (mIsLoading) { // якщо загружаємо банер , тоді return
             if (!TextUtils.isEmpty(mAdUnitId)) {  // This shouldn't be able to happen?
                 MoPubLog.i("Already loading an ad for " + mAdUnitId + ", wait to finish.");
             }
@@ -452,19 +466,21 @@ public class AdViewController {
     }
 
     void fetchAd(String url) {
-        MoPubView moPubView = getMoPubView();
+        MoPubView moPubView = getMoPubView(); // дістаєм вюшку банера
         if (moPubView == null || mContext == null) {
             MoPubLog.d("Can't load an ad in this ad view because it was destroyed.");
             setNotLoading();
             return;
         }
 
+        //?? custom volley request , але хз що він відсилає чи отримує
         AdRequest adRequest = new AdRequest(url,
                 moPubView.getAdFormat(),
                 mAdUnitId,
                 mContext,
                 mAdListener
         );
+        //хз ,  требп це чекнути
         RequestQueue requestQueue = Networking.getRequestQueue(mContext);
         requestQueue.add(adRequest);
         mActiveRequest = adRequest;
@@ -475,6 +491,8 @@ public class AdViewController {
         loadAd();
     }
 
+    //отримує параметри банера і повертає його урлу
+    //урла будується з ID KEYWORDS LOCATION
     @Nullable
     String generateAdUrl() {
         return mUrlGenerator == null ? null : mUrlGenerator
@@ -497,6 +515,7 @@ public class AdViewController {
         moPubView.adFailed(errorCode);
     }
 
+    //перегружає банер через певний час
     void scheduleRefreshTimerIfEnabled() {
         cancelRefreshTimer();
         if (mAutoRefreshEnabled && mRefreshTimeMillis != null && mRefreshTimeMillis > 0) {

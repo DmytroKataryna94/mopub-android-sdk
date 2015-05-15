@@ -26,6 +26,9 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 /**
  * Singleton that caches Client objects so they will be available to background threads.
  */
+
+// дістаєм конфігурацію телефона (здається)
+//багато полів є зайвими AppVersion
 public class ClientMetadata {
     // Network type constant defined after API 9:
     private static final int TYPE_ETHERNET = 9;

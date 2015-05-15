@@ -39,6 +39,7 @@ import static com.mopub.network.HeaderUtils.extractBooleanHeader;
 import static com.mopub.network.HeaderUtils.extractHeader;
 import static com.mopub.network.HeaderUtils.extractIntegerHeader;
 
+//сенд реквести кудись ??
 public class AdRequest extends Request<AdResponse> {
 
     @NonNull private final AdRequest.Listener mListener;

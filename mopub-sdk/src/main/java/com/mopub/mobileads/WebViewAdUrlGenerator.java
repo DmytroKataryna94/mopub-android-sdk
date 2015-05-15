@@ -20,6 +20,7 @@ public class WebViewAdUrlGenerator extends AdUrlGenerator {
 
         setApiVersion("6");
 
+        //клас , який дістає всі дані про девайс
         final ClientMetadata clientMetadata = ClientMetadata.getInstance(mContext);
         addBaseParams(clientMetadata);
 
@@ -27,6 +28,6 @@ public class WebViewAdUrlGenerator extends AdUrlGenerator {
 
         setExternalStoragePermission(mIsStorePictureSupported);
 
-        return getFinalUrlString();
+        return getFinalUrlString(); // стрінга яку ми відсиоаємо на сервер (здається)
     }
 }
