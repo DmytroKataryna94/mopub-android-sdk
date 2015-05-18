@@ -103,6 +103,4 @@ public class BaseWebView extends WebView {
             windowManager.addView(webView, params);
         }
     }
-
-
 }

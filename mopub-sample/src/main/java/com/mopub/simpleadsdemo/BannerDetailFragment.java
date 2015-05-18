@@ -42,6 +42,8 @@ public class BannerDetailFragment extends Fragment implements BannerAdListener {
                 loadMoPubView(adUnitId, keywords);
             }
         });
+
+        
         mMoPubView.setBannerAdListener(this);
         loadMoPubView(adUnitId, null);
 

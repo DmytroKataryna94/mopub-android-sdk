@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AdAlertReporter {
+
     private static final String EMAIL_RECIPIENT = "creative-review@mopub.com";
     private static final String EMAIL_SCHEME = "mailto:";
     private static final String SCREEN_SHOT_FILENAME = "mp_adalert_screenshot.png";

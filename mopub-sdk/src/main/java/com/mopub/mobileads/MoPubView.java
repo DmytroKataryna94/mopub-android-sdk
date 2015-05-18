@@ -28,6 +28,7 @@ import static com.mopub.common.LocationService.LocationAwareness;
 import static com.mopub.mobileads.MoPubErrorCode.ADAPTER_NOT_FOUND;
 
 public class MoPubView extends FrameLayout {
+
     public interface BannerAdListener {
         public void onBannerLoaded(MoPubView banner);
         public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode);

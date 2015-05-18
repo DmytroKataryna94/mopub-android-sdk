@@ -7,7 +7,10 @@ import android.view.View;
 
 import com.mopub.common.AdReport;
 
+// клас / який хендлить рух ad
+// що за ZigZag ?
 public class AdAlertGestureListener extends GestureDetector.SimpleOnGestureListener{
+
     private static final int MINIMUM_NUMBER_OF_ZIGZAGS_TO_FLAG = 4;
     private static final float MAXIMUM_THRESHOLD_X_IN_DIPS = 100;
     private static final float MAXIMUM_THRESHOLD_Y_IN_DIPS = 100;

@@ -37,6 +37,7 @@ import static com.mopub.common.util.Drawables.UNRIGHT_ARROW;
 import static com.mopub.common.util.Intents.deviceCanHandleIntent;
 import static com.mopub.common.util.Intents.isDeepLink;
 
+//актівіті яке відкривається  при нажиманні на баннер
 public class MoPubBrowser extends Activity {
     public static final String DESTINATION_URL_KEY = "URL";
     private static final int INNER_LAYOUT_ID = 1;

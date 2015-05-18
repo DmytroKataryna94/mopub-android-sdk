@@ -60,6 +60,7 @@ public class BaseHtmlWebView extends BaseWebView implements UserClickListener {
     }
 
     void initializeOnTouchListener(final boolean isScrollable) {
+
         setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 mViewGestureDetector.sendTouchEvent(event);

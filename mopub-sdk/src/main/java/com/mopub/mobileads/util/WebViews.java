@@ -13,6 +13,7 @@ import com.mopub.common.logging.MoPubLog;
 import com.mopub.common.util.Reflection.MethodBuilder;
 
 public class WebViews {
+    
     @TargetApi(VERSION_CODES.HONEYCOMB)
     public static void onResume(@NonNull WebView webView) {
         if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
