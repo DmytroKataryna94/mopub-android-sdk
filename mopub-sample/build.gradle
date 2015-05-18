@@ -20,15 +20,18 @@ android {
     }
 
     buildTypes {
-      release {
-        minifyEnabled true
-        proguardFiles = [getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg']
-      }
-      debug {
-        minifyEnabled true
-        proguardFiles = [getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg']
-      }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles = [getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg']
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles = [getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg']
+        }
     }
+
 
     sourceSets {
         main {
